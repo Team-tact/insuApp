@@ -1,0 +1,1226 @@
+/* 증분 학습 관련 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  max-height: 80vh;
+  width: 90%;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid #e9f2fb;
+  background: #f8fbff;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #234b79;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.modal-content {
+  padding: 24px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-content h3 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #234b79;
+  border-bottom: 2px solid #e9f2fb;
+  padding-bottom: 8px;
+}
+
+.stats-detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f8fbff;
+  border: 1px solid #e9f2fb;
+  border-radius: 8px;
+}
+
+.detail-item .label {
+  font-weight: 600;
+  color: #234b79;
+}
+
+.detail-item .value {
+  font-weight: 700;
+  color: #2c5530;
+}
+
+.list-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #e9f2fb;
+  border-radius: 8px;
+  background: #fafcff;
+}
+
+.revision-item, .pattern-item, .example-item {
+  padding: 16px;
+  border-bottom: 1px solid #e9f2fb;
+  transition: background-color 0.2s ease;
+}
+
+.revision-item:hover, .pattern-item:hover, .example-item:hover {
+  background: #f0f7ff;
+}
+
+.revision-item:last-child, .pattern-item:last-child, .example-item:last-child {
+  border-bottom: none;
+}
+
+.revision-header, .pattern-header, .example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.revision-date, .pattern-name, .example-title {
+  font-weight: 600;
+  color: #234b79;
+}
+
+.revision-type, .pattern-confidence, .example-quality {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #e9f2fb;
+  color: #234b79;
+}
+
+.revision-content, .pattern-description, .example-content {
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.pattern-usage, .example-meta {
+  font-size: 12px;
+  color: #999;
+  display: flex;
+  gap: 16px;
+}
+
+.accuracy-breakdown {
+  margin-top: 20px;
+}
+
+.breakdown-item {
+  margin-bottom: 16px;
+}
+
+.breakdown-label {
+  display: block;
+  font-weight: 600;
+  color: #234b79;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  position: relative;
+  height: 20px;
+  background: #e9f2fb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #234b79;
+}
+
+.improvement-chart {
+  margin-top: 20px;
+}
+
+.chart-container {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  height: 120px;
+  padding: 16px;
+  background: #f8fbff;
+  border-radius: 8px;
+  border: 1px solid #e9f2fb;
+}
+
+.chart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.chart-date {
+  font-size: 10px;
+  color: #666;
+  margin-bottom: 4px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.chart-bar {
+  width: 100%;
+  height: 80px;
+  background: #e9f2fb;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(180deg, #2196f3, #1976d2);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.chart-value {
+  font-size: 10px;
+  color: #234b79;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 40px 20px;
+}
+
+/* 통계 카드 클릭 가능 스타일 */
+.stat-card.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stat-card.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #2196f3;
+}
+
+.stat-card.clickable:active {
+  transform: translateY(0);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.trow.clickable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.trow.clickable:hover {
+  background-color: #f5f5f5;
+  border-left: 3px solid #007acc;
+}
+
+.learning-panel {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  border-top: 1px solid #ddd;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  flex-shrink: 0;
+  min-height: 130px;
+  max-height: 130px;
+}
+
+/* 전체 캔버스 */
+.app {
+  height: 100vh;
+  max-height: 100vh; /* 최대 높이 제한 */
+  display: flex;
+  flex-direction: column;
+  background: #eef4f8;
+  color: #102a43;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica Neue, Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    sans-serif;
+  overflow: hidden; /* 전체 스크롤 방지 */
+}
+
+/* 상단바 */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 10px 16px;
+  background: #d9e6f2;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  margin: 10px;
+  flex-shrink: 0; /* 크기 고정 */
+  height: 60px; /* 고정 높이 설정 */
+  box-sizing: border-box;
+}
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.mode-tabs .mode {
+  margin-left: 6px;
+  padding: 8px 14px;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  background: #f4f9ff;
+  font-weight: 700;
+}
+.mode-tabs .mode.on {
+  background: #bcd6f3;
+}
+
+/* 2열 레이아웃 */
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 1fr; /* 행 높이를 동일하게 설정 */
+  gap: 12px;
+  padding: 0 20px 10px; /* 우측 패딩을 10px → 20px로 증가 */
+  flex: 1; /* 남은 공간을 모두 사용 */
+  min-height: 0; /* flexbox에서 최소 높이 문제 해결 */
+  overflow: hidden; /* 스크롤 방지 */
+  align-items: stretch; /* 좌우 패널 높이를 동일하게 */
+}
+
+/* 좌측 패널 */
+.left-pane {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  background: #f8fbff;
+  overflow: hidden;
+  height: 100%; /* 부모 컨테이너 높이에 맞춤 */
+  padding-bottom: 20px; /* 하단 여백 추가하여 우측과 동일하게 */
+  box-sizing: border-box; /* 패딩을 포함한 높이 계산 */
+}
+.pane-title {
+  font-weight: 800;
+  padding: 10px 12px;
+  border-bottom: 2px solid #7aa7d8;
+  background: #e9f2fb;
+  flex-shrink: 0; /* 크기 고정 */
+}
+
+/* 좌측 패널 리스트 영역 */
+.left-pane .panel {
+  flex: 1; /* 남은 공간을 모두 사용 */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.left-pane .pdf-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* 우측 패널 */
+.right-pane {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  background: #f8fbff;
+  padding: 10px;
+  padding-bottom: 20px; /* 하단 여백 추가 */
+  overflow: hidden;
+  height: 100%; /* 부모 컨테이너 높이에 맞춤 */
+  min-height: 0; /* flexbox에서 최소 높이 문제 해결 */
+  box-sizing: border-box; /* 패딩을 포함한 높이 계산 */
+}
+
+/* 코드 스트립 + 나이선택 */
+.code-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.pills-wrap {
+  max-height: 84px;        /* 2줄 */
+  overflow-y: auto;        /* 2줄 넘으면 스크롤 */
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  padding: 8px;
+  background: #fff;
+}
+.age-select {
+  display: grid;
+  grid-template-columns: auto 80px;
+  align-items: center;
+  gap: 8px;
+}
+.age-select .label {
+  font-weight: 800;
+}
+.age-input {
+  padding: 6px 8px;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  width: 80px;
+  text-align: center;
+  background: #fff;
+}
+
+/* 통합 표 그리드 - 화면 확장 시 늘어나도록 수정 */
+.tables {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-height: 360px;
+  /* 화면 크기에 따라 동적으로 늘어나도록 flex: 1 설정 */
+  overflow: hidden; /* 하위 요소에서 스크롤 처리 */
+  border: 2px solid #7aa7d8; /* 그리드 전체에 외각선 추가 */
+  border-radius: 12px;
+  padding: 16px 20px; /* 좌우 패딩을 20px로 통일 */
+  background: #fafcff;
+  margin: 8px 0; /* 상하 여백 추가 */
+}
+
+/* 공통 테이블 스타일 */
+.thead, .trow {
+  display: grid;
+  align-items: center;
+}
+.grid-left .thead {
+  grid-template-columns: 120px 1fr 130px 130px 130px; /* 원래 설정으로 복원 */
+}
+.grid-left .trow {
+  grid-template-columns: 120px 1fr 130px 130px 130px; /* 원래 설정으로 복원 */
+}
+.grid-right .thead {
+  grid-template-columns: 1fr 150px 150px; /* 원래 설정으로 복원 */
+}
+.grid-right .trow {
+  grid-template-columns: 1fr 150px 150px; /* 원래 설정으로 복원 */
+}
+
+/* 그리드 영역별 스크롤 처리 */
+/* 통합 보험코드 그리드 */
+.unified-grid {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #b8d4f0;
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  position: relative;
+  /* 레이아웃 강제 적용을 위한 설정 */
+  contain: layout;
+  /* 내부 여백 추가로 가독성 향상 */
+  margin: 4px; /* 모든 방향 4px로 통일 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 미묘한 그림자 효과 */
+}
+
+/* 통합 그리드 헤더와 본문 설정 */
+.unified-grid .thead, .unified-grid .tbody {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.unified-grid .thead {
+  flex-shrink: 0; /* 헤더는 고정 */
+  /* 스크롤바 공간 없음 - 헤더와 본문 완전 정렬 */
+}
+
+.unified-grid .tbody {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 200px;
+  box-sizing: border-box;
+  /* 스크롤바가 있을 때만 공간 확보 */
+  scrollbar-gutter: auto;
+}
+
+/* 통합 그리드 헤더 */
+.unified-grid .thead {
+  display: grid;
+  grid-template-columns: 120px 2.5fr 120px 130px 160px 1fr 140px 140px;
+  gap: 0;
+  background: #f8fbff;
+  border-bottom: 2px solid #7aa7d8;
+  padding: 0 12px 0 0;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 통합 그리드 행 */
+.unified-grid .trow {
+  display: grid;
+  grid-template-columns: 120px 2.5fr 120px 130px 160px 1fr 140px 140px;
+  gap: 0;
+  min-height: 60px;
+  height: auto;
+  align-items: stretch;
+  border-bottom: 1px solid #e9f2fb;
+  padding: 0 12px 0 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.unified-grid .trow:hover {
+  background: #f0f7ff;
+}
+
+/* 통합 그리드 셀 스타일 */
+.unified-grid .th, .unified-grid .td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 6px 8px;
+  border-right: 1px solid #e9f2fb;
+  box-sizing: border-box;
+}
+
+.unified-grid .th:last-child, .unified-grid .td:last-child {
+  border-right: none;
+  padding-right: 12px; /* 마지막 열과 외각선 사이 간격 확보 */
+}
+
+.unified-grid .th {
+  font-weight: 700;
+  color: #234b79;
+  background: #f8fbff;
+  text-align: center;
+  font-size: 14px;
+}
+
+.unified-grid .td {
+  background: #fff;
+  font-size: 13px;
+  color: #333;
+}
+
+/* 통합 그리드 열별 특수 스타일 */
+.unified-grid .th.code, .unified-grid .td.code {
+  font-weight: 600;
+  color: #234b79;
+}
+
+.unified-grid .th.name, .unified-grid .td.name {
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 12px;
+}
+
+.unified-grid .th.age, .unified-grid .td.age {
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.unified-grid .th.data, .unified-grid .td.data {
+  font-size: 13px;
+  color: #666;
+}
+
+.unified-grid .td.min, .unified-grid .td.max {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #2c5530;
+  text-align: right;
+  padding-right: 12px;
+}
+
+/* 마지막 열(보험료 여) padding 보강 */
+.unified-grid .th.max,
+.unified-grid .td.max {
+  padding-left: 8px;    /* 좌측 패딩 */
+  padding-right: 16px;  /* 우측 외곽선과 이격 */
+}
+
+/* 기존 분리된 그리드 스타일 - 통합 그리드로 대체됨 */
+/*
+.grid-left .tbody, .grid-right .tbody {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 200px;
+  box-sizing: border-box;
+  scrollbar-gutter: auto;
+}
+*/
+
+/* 통합 그리드 스크롤바 스타일링 */
+.unified-grid .tbody::-webkit-scrollbar {
+  width: 17px;
+}
+
+.unified-grid .tbody::-webkit-scrollbar-thumb {
+  background: #b8d4f0;
+  border-radius: 8px;
+}
+
+.unified-grid .tbody::-webkit-scrollbar-track {
+  background: #f0f7ff;
+  border-radius: 8px;
+}
+
+.grid-left .trow, .grid-right .trow {
+  min-height: 60px; /* 각 행의 최소 높이 증가 */
+  height: auto; /* 내용에 따라 자동 조정 */
+  align-items: stretch; /* 모든 셀이 동일한 높이 유지 */
+}
+
+.th, .td {
+  padding: 8px 10px;
+  border: 2px solid #7aa7d8;
+  background: #ffffff;
+  font-size: 14px;
+  box-sizing: border-box; /* 패딩 포함 계산 */
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  min-height: 44px; /* 최소 높이 보장 */
+  word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+  overflow-wrap: break-word; /* 단어 경계에서 줄바꿈 */
+}
+
+/* 보험기간, 납입기간 컬럼 너비 통일 */
+.td.insu, .td.pay {
+  width: 130px;
+  min-width: 130px;
+  max-width: 130px;
+}
+
+.th.insu, .th.pay {
+  width: 130px;
+  min-width: 130px;
+  max-width: 130px;
+}
+
+/* 보험료 컬럼 너비 조정 (스크롤바 고려) */
+.td.premium, .th.premium {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+/* 가입나이 컬럼 스타일 - 작은 폰트로 조정 */
+.td.age {
+  font-size: 11px;
+  line-height: 1.3;
+  padding: 8px 10px; /* 다른 컬럼과 동일한 패딩 */
+  width: 130px; /* 원래 너비로 복원 */
+  min-width: 130px; /* 최소 너비 보장 */
+  max-width: 130px; /* 최대 너비 제한 */
+  box-sizing: border-box; /* 패딩 포함 계산 */
+  min-height: 44px; /* 다른 컬럼과 동일한 최소 높이 */
+}
+.thead .th {
+  background: #e9f2fb;
+  font-weight: 800;
+  min-height: 44px; /* 데이터 셀과 동일한 최소 높이 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+}
+
+/* 가입나이 헤더도 중앙 정렬 및 너비 통일 */
+.th.age {
+  text-align: center;
+  width: 130px; /* 원래 너비로 복원 */
+  min-width: 130px; /* 최소 너비 보장 */
+  max-width: 130px; /* 최대 너비 제한 */
+  box-sizing: border-box; /* 패딩 포함 계산 */
+}
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* 좌측 표 여백(디자인 동일 구현용) */
+.fill-area {
+  height: 100%;
+  border: 2px solid #7aa7d8;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  background: #fafcff;
+}
+
+/* 계약조건설명 관련 CSS 제거됨 */
+.badge {
+  font-weight: 800;
+  padding: 8px 10px;
+  background: #e9f2fb;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+}
+.badge.small {
+  padding: 6px 8px;
+}
+
+/* 하단 오류/도움말 라인 - 최소 4줄 보장, 가로 길이 증분 학습 통계와 동일 */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 오류 영역과 증분 학습 통계 영역을 동일한 가로 길이로 설정 */
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px; /* 10px에서 15px로 증가하여 하단 여백 확보 */
+  flex-shrink: 0;
+  min-height: 80px; /* 최소 4줄을 보장하기 위해 높이 증가 */
+}
+.error-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: start;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  background: #fff5f5;
+  padding: 8px;
+  min-height: 80px; /* 최소 4줄을 보장하기 위해 최소 높이 설정 */
+  max-height: 120px; /* 최대 높이도 증가 */
+  overflow: hidden;
+}
+.error-box .msg {
+  line-height: 1.4;
+  min-height: 60px; /* 최소 4줄을 보장하기 위해 최소 높이 설정 */
+  max-height: 100px; /* 최대 높이 증가 */
+  overflow-y: auto;
+  word-wrap: break-word;
+  white-space: pre-line;
+  padding-right: 4px; /* 스크롤바 공간 확보 */
+}
+
+.select-bar {
+  border: 2px solid #7aa7d8;
+  background: #fafcff;
+  border-radius: 10px;
+  padding: 10px 14px;             /* 우측 벽과의 기본 이격 */
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* [라벨] [요약] [나이] */
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;             /* 아래 표와 살짝 간격 */
+}
+
+/* 계약조건설명 뱃지와 톤을 맞춘 큰 라벨 */
+.badge.large {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 2px solid #7aa7d8;
+  border-radius: 10px;
+  background: #e8f1fb;
+  font-weight: 700;
+  color: #234b79;
+  white-space: nowrap;
+}
+
+/* 주계약/특약 요약(두 줄) */
+.select-summary {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 4px;
+  color: #334;
+  font-weight: 500;
+}
+
+/* 우측 ‘나이선택’ 그룹: 우측 정렬 + 오른쪽 벽에서 여백 확보 */
+.age-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;       /* 그리드 우측 정렬 */
+  padding-right: 10px;     /* 우측 테두리와 이격 ★ */
+}
+
+.age-label {
+  color: #234b79;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.age-input {
+  width: 64px;
+  padding: 6px 8px;
+  border: 2px solid #7aa7d8;
+  border-radius: 8px;
+  background: #fff;
+  text-align: right;
+}
+
+/* ▶ 헤더 : 상품선택(2단) + 나이선택(분리) */
+.header-grid{
+  display:grid;
+  grid-template-columns: 1fr 280px; /* 나이선택 영역 확대 */
+  gap:15px; /* 간격 증가 */
+  align-items:start;
+  flex-shrink: 0; /* 크기 고정 */
+  border: 2px solid #7aa7d8; /* 헤더 영역에 외각선 추가 */
+  border-radius: 10px;
+  padding: 15px 15px 15px 20px; /* 좌측 패딩을 20px로 통일 */
+  background: #f8fbff;
+}
+
+/* 카드 공통 */
+.product-card,
+.age-card{
+  border:2px solid #7aa7d8; /* 더 명확한 외각선 */
+  border-radius:10px;
+  background:#f8fbff;
+  padding:10px;
+}
+
+/* 상품선택 카드 스타일 개선 */
+.product-card {
+  display: grid;
+  grid-template-columns: auto 1fr; /* 상품선택 버튼과 상품코드 영역을 좌우로 분리 */
+  gap: 12px; /* 간격 유지 */
+  align-items: center;
+}
+
+.product-card .badge{ 
+  margin-bottom: 0px; /* 마진 제거 */
+  font-size: 16px; /* 타이틀 크기 증가 */
+  padding: 8px 16px; /* 패딩 증가 */
+  background: #234b79; /* 타이틀 배경색 변경 */
+  color: #fff; /* 타이틀 텍스트 색상 */
+  border: 2px solid #234b79;
+  text-align: center;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* 상품 코드 영역 스타일 */
+.product-code-display {
+  padding: 8px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.code-buttons-container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 120px; /* 3줄 높이 제한 */
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f0f0f0;
+}
+
+.code-buttons-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.code-buttons-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+.code-buttons-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.code-buttons-container::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.code-button {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.code-button:hover {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  color: #1976d2;
+}
+
+.code-button.selected {
+  background: #2196f3;
+  border-color: #1976d2;
+  color: white;
+}
+
+.no-codes {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+
+/* 나이선택 카드 레이아웃 개선 */
+.age-card{ 
+  justify-self:end; 
+  margin-right:0px; 
+  min-width: 250px; /* 최소 너비 증가 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* 내부 요소 간격 줄임 (12px → 8px) */
+  padding: 8px; /* 패딩 줄임 (기본 10px → 8px) */
+}
+
+/* 배지 공통 */
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border:2px solid #7aa7d8; /* 더 명확한 외각선 */
+  border-radius:10px;
+  font-weight:700;
+  background:#e9f2fb;
+  color: #234b79;
+}
+.badge.large{ padding:5px 12px; }
+.badge.warn{ background:var(--warn); }
+
+/* 코드칩 래퍼: 최대 2줄 유지 + 스크롤 */
+.pill-wrap{
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:10px; /* 간격 증가 */
+  max-height:64px; 
+  overflow:auto;
+  padding:8px; /* 패딩 증가 */
+  background: #f0f7ff; /* 배경색 추가 */
+  border: 1px solid #b8d4f0; /* 경계선 추가 */
+  border-radius: 8px;
+}
+
+/* 나이 입력 */
+.age-input{
+  width:80px; /* 너비 증가 */
+  text-align:center;
+  margin-left:0px; /* 마진 제거 */
+  padding:6px 8px; /* 패딩 줄임 (8px 10px → 6px 8px) */
+  border:2px solid #7aa7d8;
+  border-radius:8px;
+  background:#fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 좌우 균형 맞춤 */
+  gap: 8px; /* 간격 줄임 (12px → 8px) */
+  margin-bottom: 4px; /* 하단 마진 줄임 (8px → 4px) */
+  padding: 2px 0; /* 패딩 줄임 (4px → 2px) */
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-label {
+  font-weight: 700;
+  color: #234b79;
+  white-space: nowrap;
+  min-width: 70px; /* 최소 너비 증가 */
+  font-size: 14px;
+}
+
+.amount-input {
+  width: 80px; /* 너비 증가 */
+  text-align: center;
+  padding: 6px 8px; /* 패딩 줄임 (8px 10px → 6px 8px) */
+  border: 2px solid #7aa7d8;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.code-input {
+  width: 100px; /* 코드 입력을 위해 약간 더 넓게 */
+  text-align: center;
+  padding: 6px 8px; /* 패딩 줄임 (8px 10px → 6px 8px) */
+  border: 2px solid #7aa7d8;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase; /* 코드를 대문자로 표시 */
+}
+
+.code-input::placeholder {
+  color: #999;
+  font-size: 12px;
+  text-transform: none;
+}
+
+/* 코드 선택 영역 스타일 */
+.code-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.code-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.code-row.sub {
+  opacity: 0.8;
+}
+
+.code-pill {
+  padding: 6px 12px;
+  border: 2px solid #b8d4f0;
+  border-radius: 6px;
+  background: #fff;
+  color: #234b79;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.code-pill:hover {
+  border-color: #7aa7d8;
+  background: #f0f7ff;
+  transform: translateY(-1px);
+}
+
+.code-pill.picked {
+  border-color: #234b79;
+  background: #234b79;
+  color: #fff;
+  font-weight: 700;
+}
+
+.dim {
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* 드래그&드랍 관련 스타일 */
+.panel.drag-over {
+  position: relative;
+  border-color: #2196f3 !important;
+  background: #e3f2fd !important;
+  transition: all 0.2s ease;
+}
+
+.drag-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(33, 150, 243, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border: 3px dashed #2196f3;
+  border-radius: 8px;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.drag-message {
+  background: #2196f3;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  border-radius: 8px;
+}
+
+.upload-message {
+  background: #4caf50;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-message::before {
+  content: "⏳";
+  font-size: 18px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 좌측 리스트 패널 스타일 개선 */
+.pdf-list {
+  padding: 8px 0; /* 상단 패딩 추가 */
+}
+
+.pdf-list li {
+  padding: 8px 12px;
+  margin: 4px 8px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  color: #234b79;
+}
+
+.pdf-list li:hover {
+  border-color: #7aa7d8;
+  background: #f0f7ff;
+  transform: translateY(-1px);
+}
+
+.pdf-list li.active {
+  border-color: #234b79;
+  background: #234b79;
+  color: #fff;
+  font-weight: 700;
+}
+
+.product-code-display {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-code-item {
+  padding: 4px 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  border: 1px solid #ddd;
+}

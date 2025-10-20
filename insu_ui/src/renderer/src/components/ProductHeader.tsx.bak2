@@ -1,0 +1,22 @@
+// src/renderer/src/components/ProductHeader.tsx
+// 임시 비활성화: 사용하지 않는 컴포넌트
+// import { useAppStore } from "../store/useAppStore";
+
+export function ProductHeader() {
+  // 임시 비활성화: 사용하지 않는 컴포넌트
+  // const { product } = useAppStore();
+  if (!product) return null;
+  const t = product.terms;
+  return (
+    <div className="border rounded p-3">
+      <div className="text-lg font-semibold">{product.name ?? "(명칭 미확인)"} <span className="text-sm text-gray-500">[{product.insuCd}] {product.type ?? ""}</span></div>
+      <div className="grid grid-cols-2 gap-2 mt-2 text-sm">
+        <div>가입나이: {t?.age?.common ?? [t?.age?.male && `남 ${t?.age?.male}`, t?.age?.female && `여 ${t?.age?.female}`].filter(Boolean).join(" / ") ?? "-"}</div>
+        <div>보험기간: {t?.insuTerm ?? "-"}</div>
+        <div>납입기간: {t?.payTerm ?? "-"}</div>
+        <div>갱신: {t?.renew ?? "-"}</div>
+      </div>
+      {t?.specialNotes && <div className="mt-2 text-xs text-gray-600">특이사항: {t.specialNotes}</div>}
+    </div>
+  );
+}

@@ -1,0 +1,103 @@
+// 임시 비활성화: 사용하지 않는 컴포넌트
+// import { useAppStore } from "../store/useAppStore";
+
+function krw(n?: number | null) {
+  if (n == null) return "-";
+  return n.toLocaleString("ko-KR");
+}
+
+export function SummaryGrids() {
+  // 임시 비활성화: 사용하지 않는 컴포넌트
+  // const { rowItems, minmax, dataCheck, notes, errors, age, setAge } = useAppStore();
+
+  const dc = dataCheck?.items ?? [];
+
+  return (
+    <div className="summary-area">
+
+      {/* 좌: 계약조건 표 */}
+      <div className="panel mid">
+        <div className="panel-title">주계약 / 특약</div>
+        <div className="row with-age">
+          <div className="age-box">
+            <label>나이선택</label>
+            <input
+              type="number"
+              min={15}
+              value={age}
+              onChange={e => setAge(Number(e.target.value || 15))}
+            />
+          </div>
+        </div>
+
+        <table className="table cond">
+          <thead>
+            <tr>
+              <th>보험코드</th>
+              <th>명칭</th>
+              <th>가입나이</th>
+              <th>보험기간</th>
+              <th>납입기간</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rowItems.map(r => (
+              <tr key={r.insuCd}>
+                <td>{r.insuCd}</td>
+                <td className="name">{r.name ?? "-"}</td>
+                <td>{r.ageRange ?? "-"}</td>
+                <td>{r.insuTerm ?? "-"}</td>
+                <td>{r.payTerm ?? "-"}</td>
+              </tr>
+            ))}
+            {!rowItems.length && (
+              <tr><td colSpan={5} className="empty">좌측에서 PDF와 주계약 코드를 선택하세요.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* 우: 데이터/최소최대/계약조건/오류 */}
+      <div className="panel mid">
+        <div className="panel-title">데이터</div>
+
+        <table className="table data">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>준비금키</th>
+              <th>준비금</th>
+              <th>보험료</th>
+              <th>MIN(남/여)</th>
+              <th>MAX(남/여)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>상태</td>
+              <td>{dc.find(d=>d.table==="RVT_RSRV_KEY")?.ok ? "Y" : "N"}</td>
+              <td>{dc.find(d=>d.table==="RVT_RSRV_RATE")?.ok ? "Y" : "N"}</td>
+              <td>{dc.find(d=>d.table==="RVT_PREM_RATE")?.ok ? "Y" : "N"}</td>
+              <td>{krw(minmax?.manMin)} / {krw(minmax?.fmlMin)}</td>
+              <td>{krw(minmax?.manMax)} / {krw(minmax?.fmlMax)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div className="panel-sub">
+          <div className="panel-title small">계약조건설명</div>
+          <div className="note">
+            {notes.length ? notes.map((n,i)=><div key={i}>• {n}</div>) : <em>표시할 내용이 없습니다.</em>}
+          </div>
+        </div>
+
+        <div className="panel-sub">
+          <div className="panel-title small">오류발생</div>
+          <div className="error-log">
+            {errors.length ? errors.map((e,i)=><div key={i}>• {e}</div>) : <em>오류 데이터가 없습니다.</em>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
