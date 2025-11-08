@@ -1,0 +1,305 @@
+/* LearningStatisticsPanel.css */
+
+.learning-statistics-panel {
+  padding: 5px;
+  background: white;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+  /* max-width: 1200px; */
+  /* margin: 20px auto; */
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-refresh {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn-refresh:hover {
+  background: #5a6fd8;
+}
+
+.btn-refresh:active {
+  transform: scale(0.95);
+}
+
+.statistics-panel {
+  padding: 8px; /* 40px에서 8px로 대폭 줄임 */
+  text-align: center;
+  min-height: 120px; /* 100px에서 120px로 증가하여 마지막 업데이트 시간 완전 표시 */
+}
+
+.statistics-panel.loading {
+  background: #f9f9f9;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* 24px에서 8px로 줄임 */
+  padding-bottom: 6px; /* 16px에서 6px로 줄임 */
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.panel-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 16px; /* 22px에서 16px로 줄임 */
+  font-weight: 600;
+}
+
+.btn-refresh {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 4px 8px; /* 8px 16px에서 4px 8px로 줄임 */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px; /* 18px에서 14px로 줄임 */
+  transition: all 0.3s ease;
+}
+
+.btn-refresh:hover {
+  background: #1976d2;
+  transform: scale(1.1);
+}
+
+.btn-retry {
+  margin-top: 16px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 200px에서 180px로 줄임 */
+  gap: 8px; /* 20px에서 8px로 줄임 */
+  margin-bottom: 8px; /* 20px에서 8px로 줄임 */
+}
+
+.stat-card {
+  background: #f8f9fa;
+  padding: 8px; /* 20px에서 8px로 줄임 */
+  border-radius: 8px; /* 10px에서 8px로 줄임 */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 16px에서 8px로 줄임 */
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.stat-icon {
+  font-size: 20px; /* 32px에서 20px로 줄임 */
+  min-width: 24px; /* 40px에서 24px로 줄임 */
+  text-align: center;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 10px; /* 12px에서 10px로 줄임 */
+  color: #666;
+  margin-bottom: 2px; /* 6px에서 2px로 줄임 */
+  font-weight: 500;
+}
+
+.stat-card.highlight .stat-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stat-value {
+  font-size: 18px; /* 28px에서 18px로 줄임 */
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+}
+
+.stat-card.highlight .stat-value {
+  color: white;
+}
+
+.stat-value.positive {
+  color: #4caf50;
+}
+
+.stat-card.highlight .stat-value.positive {
+  color: #a5d6a7;
+}
+
+.stat-value.negative {
+  color: #f44336;
+}
+
+.panel-footer {
+  text-align: right;
+  padding-top: 8px; /* 4px에서 8px로 증가 */
+  padding-bottom: 8px; /* 4px에서 8px로 증가하여 하단 여백 확보 */
+  border-top: 1px solid #f0f0f0;
+  margin-top: 4px; /* 상단 마진 추가 */
+  min-height: 25px; /* 최소 높이 설정으로 마지막 업데이트 시간 공간 보장 */
+}
+
+.last-updated {
+  font-size: 11px; /* 10px에서 11px로 증가하여 가독성 향상 */
+  color: #666; /* 999에서 666으로 변경하여 더 진하게 */
+  font-weight: 500; /* 폰트 굵기 추가 */
+  margin-top: 4px; /* 8px에서 4px로 조정 */
+  margin-bottom: 2px; /* 하단 마진 추가 */
+  text-align: right; /* 우측 정렬로 변경 */
+  line-height: 1.2; /* 줄 높이 설정 */
+}
+
+.error-message {
+  color: #f44336;
+  padding: 16px;
+  background: #ffebee;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .learning-statistics-panel {
+    padding: 16px;
+    margin: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-icon {
+    font-size: 24px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .panel-header h3 {
+    font-size: 18px;
+  }
+}
+
+/* 필드별 정확도 섹션 */
+.field-accuracy-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.field-accuracy-section h4 {
+  margin: 0 0 16px 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.field-accuracy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.field-accuracy-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+}
+
+.field-accuracy-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.field-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.field-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* 필드별 정확도 반응형 */
+@media (max-width: 768px) {
+  .field-accuracy-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .field-accuracy-item {
+    padding: 10px 12px;
+  }
+  
+  .field-label {
+    font-size: 12px;
+  }
+  
+  .field-value {
+    font-size: 14px;
+  }
+}
+
+
