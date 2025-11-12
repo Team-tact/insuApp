@@ -31,7 +31,7 @@ public class LearningController {
      */
     @PostMapping("/correction")
     public Map<String, Object> submitCorrection(@RequestBody CorrectionRequest request) {
-        log.info("=== 백엔드 API 요청 수신 ===");
+        log.info("=== 백엔드  API 요청 수신 ===");
         log.info("📥 요청 데이터: insuCd={}, productName={}", 
             request.getInsuCd(), 
             request.getOriginalResult().get("productName"));
