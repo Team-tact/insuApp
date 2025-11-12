@@ -1,0 +1,132 @@
+/* 전체 채팅 컨테이너 (반응형의 핵심) */
+.chat-container {
+  display: flex;
+  flex-direction: column; /* 위에서 아래로 쌓도록 (메시지창, 입력창) */
+  width: 100%;
+  height: 100%; /* 부모 컴포넌트 높이에 맞춤 (예: 100vh) */
+  max-width: 800px; /* 너무 넓어지지 않게 */
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden; /* 모서리 둥글게 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+
+/* 1. 메시지 목록 */
+.message-list {
+  flex-grow: 1; /* 입력창을 제외한 모든 공간 차지 */
+  overflow-y: auto; /* 메시지가 많아지면 스크롤 */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 메시지 사이 간격 */
+  background-color: #f9f9f9;
+}
+
+/* 메시지 말풍선 공통 스타일 */
+.message-bubble {
+  padding: 12px 18px;
+  border-radius: 20px;
+  max-width: 80%; /* 화면의 80%까지만 차지 (반응형) */
+  line-height: 1.5;
+  word-wrap: break-word; /* 긴 단어 자동 줄바꿈 */
+  white-space: pre-line;
+}
+
+/* AI가 보낸 메시지 (왼쪽 정렬) */
+.message-bubble.ai {
+  background-color: #e9e9eb;
+  color: #000;
+  align-self: flex-start; /* 왼쪽 정렬 */
+  border-bottom-left-radius: 4px;
+}
+
+/* 사용자가 보낸 메시지 (오른쪽 정렬) */
+.message-bubble.user {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end; /* 오른쪽 정렬 */
+  border-bottom-right-radius: 4px;
+}
+
+/* 2. 하단 질의 입력 폼 */
+.chat-input-form {
+  display: flex; /* 입력창과 버튼을 가로로 배치 */
+  padding: 12px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+/* 텍스트 입력창 */
+.chat-input {
+  flex-grow: 1; /* 버튼을 제외한 모든 공간 차지 */
+  border: 1px solid #d0d0d0;
+  border-radius: 20px;
+  padding: 12px 18px;
+  font-size: 15px;
+  margin-right: 10px;
+  outline: none;
+}
+.chat-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+}
+
+/* 전송 버튼 */
+.send-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.send-button:hover {
+  background-color: #0056b3;
+}
+
+/* ... 기존 .css 파일 맨 아래에 추가 ... */
+
+/* 로딩 중인 말풍선 스타일 */
+.message-bubble.loading {
+  font-style: italic;
+  color: #555;
+  /* 깜빡이는 효과 */
+  animation: blink 1.5s linear infinite;
+}
+
+/* 로딩 중일 때 전송 버튼 스타일 */
+.send-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* 로딩 중일 때 입력창 스타일 */
+.chat-input:disabled {
+  background-color: #f8f8f8;
+}
+
+/* 깜빡임 애니메이션 키프레임 */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* react-markdown이 생성하는 태그(p, ul, ol)의 기본 여백 제거 */
+.message-bubble p,
+.message-bubble ul,
+.message-bubble ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* 리스트 항목에 약간의 안쪽 여백을 줘서 보기 좋게 함 */
+.message-bubble ul,
+.message-bubble ol {
+  padding-left: 20px;
+}
