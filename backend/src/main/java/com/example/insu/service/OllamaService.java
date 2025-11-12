@@ -1,7 +1,15 @@
 package com.example.insu.service;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.example.insu.dto.Message;
+import com.example.insu.dto.OllamaRequest;
+import com.example.insu.dto.OllamaResponse;
+
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,6 +26,10 @@ public class OllamaService {
     private volatile Map<String, String> lastMistralResult;
     private volatile Map<String, String> lastCodeLlamaResult;
     
+    private final RestTemplate restTemplate = new RestTemplate();
+    // Ollama 서버 주소
+    private final String ollamaApiUrl = "http://localhost:11434/api/chat";
+
     /**
      * Llama 3.1 모델로 파싱
      */
@@ -288,6 +300,31 @@ public class OllamaService {
             """;
     }
     
+    public OllamaResponse getChatResponse(String prompt) {
+        try {
+            // 1. 사용할 모델과 프롬프트를 담아 요청 객체 생성
+            // (사용자가 설치한 모델 이름을 사용하세요)
+            OllamaRequest request = new OllamaRequest("llama3.1:8b", prompt);
+
+            // 2. Spring의 RestTemplate을 사용해 POST 요청 전송
+            ResponseEntity<OllamaResponse> responseEntity = restTemplate.postForEntity(
+                ollamaApiUrl,
+                request,
+                OllamaResponse.class
+            );
+
+            // 2. 응답 본문(OllamaResponse 객체)을 그대로 반환
+            if (responseEntity.getBody() != null) {
+                return responseEntity.getBody();
+            } else {
+                return new OllamaResponse(new Message("ai", "오류: 응답을 받지 못했습니다."));
+            }
+
+            } catch (Exception e) {
+                return new OllamaResponse(new Message("ai", "Ollama 서버 연결에 실패했습니다: " + e.getMessage()));
+            }
+    }
+
     // Getters for last results
     public Map<String, String> getLastLlamaResult() { return lastLlamaResult; }
     public Map<String, String> getLastMistralResult() { return lastMistralResult; }
